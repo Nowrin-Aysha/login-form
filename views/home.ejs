@@ -51,7 +51,10 @@
     <div class="container">
         <h2>Hello, <%= username %>!</h2>
         <p>Welcome to your homepage.</p>
-        <a href="/logout" class="logout-button">Logout</a>
+        <form action="/logout" method="POST">
+        <button class="logout-button">Logout</button>
+        </form>
+
     </div>
 </body>
 </html>
