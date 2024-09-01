@@ -24,11 +24,12 @@ app.get('/', (req, res) => {
     if (req.session.username) {
         return res.redirect('/home');
     }
-    res.render('form', { usernameError: null, passwordError: null, username: null});
+    res.render('form', { usernameError: null, passwordError: null, username: null, password: null});
 });
 
 app.post('/home', (req, res) => {
     const { username, password } = req.body;
+    
 
     const userPattern = /^[a-zA-Z][a-zA-Z0-9._]{1,}$/;
     const passPattern = /^\d{4,7}$/;
@@ -36,42 +37,38 @@ app.post('/home', (req, res) => {
     let usernameError = '';
     let passwordError = '';
 
-    
     if (!username) {
         usernameError = "Name is required";
     } else if (!userPattern.test(username)) {
         usernameError = "Name should start with a letter and be at least 2 characters long";
     }
 
-    
     if (!password) {
         passwordError = "Password is required";
     } else if (!passPattern.test(password)) {
         passwordError = "Password must be between 4 and 7 digits long";
     }
 
-    
     if (usernameError || passwordError) {
-        return res.render('form', { usernameError, passwordError, username });
+        return res.render('form', { usernameError, passwordError, username, password });
     }
 
     if (username === 'Nowrin' && password === '1234') {
         req.session.username = username;
-        return res.redirect('/home');
+        return res.redirect('/home'); 
     } else {
-        
         if (username !== 'Nowrin') {
             usernameError = 'Incorrect username';
         }
         if (password !== '1234') {
             passwordError = 'Incorrect password';
         }
-        return res.render('form', { usernameError, passwordError, username });
+        return res.render('form', { usernameError, passwordError, username, password });
     }
 });
 
 app.get('/home', (req, res) => {
-    if (req.session.username) {
+        if (req.session.username) {
         res.render('home', { username: req.session.username });
     } else {
         res.redirect('/');

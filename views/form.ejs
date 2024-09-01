@@ -86,22 +86,28 @@
     <form action="/home" method="post">
         <h2>Login Form</h2>
 
-        <% if (usernameError) { %>
-            <div class="error"><%= usernameError %></div>
-        <% } %>
+        
 
         
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" value="<%= username %>">
 
-
-        <% if (passwordError) { %>
-            <div class="error"><%= passwordError %></div>
+        <% if (usernameError) { %>
+            <div class="error"><%= usernameError %></div>
         <% } %>
 
 
+       
+ 
+
         <label for="password">Password:</label>
-        <input type="password" id="password" name="password">
+        <input type="password" id="password" name="password" value="<%= password %>">
+
+        
+       <% if (passwordError) { %>
+        <div class="error"><%= passwordError %></div>
+    <% } %>
+
 
       
 
