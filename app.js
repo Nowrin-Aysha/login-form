@@ -55,12 +55,12 @@ app.post('/home', (req, res) => {
         return res.render('form', { usernameError, passwordError, username });
     }
 
-    if (username === 'Nowrin' && password === '1234') {
+    if (username === 'Kunjappi' && password === '1234') {
         req.session.username = username;
         return res.redirect('/home');
     } else {
         
-        if (username !== 'Nowrin') {
+        if (username !== 'Kunjappi') {
             usernameError = 'Incorrect username';
         }
         if (password !== '1234') {
